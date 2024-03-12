@@ -41,6 +41,49 @@ header {
     display: none;
 }
 
+#pkmnContainer article {
+    width: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pkmnContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+#previous,
+#next {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#previous:hover,
+#next:hover {
+    background-color: #e0e0e0;
+}
+
+#pkmnContainer article { 
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px; /* Ajusta este valor según el espacio deseado entre cada sección */
+    padding: 10px;
+    background-color: #f9f9f9; /* Opcional: agrega un color de fondo para resaltar cada sección */
+    border: 1px solid black; /* Opcional: agrega un borde alrededor de cada sección */
+    border-radius: 5px; /* Opcional: agrega bordes redondeados a cada sección */
+}
+
 @media screen and (max-width: 376px) {
     h1 {
         display: none;
@@ -64,5 +107,14 @@ header {
 
     #menu-movil li:nth-child(-n+2) {
         border: none;
+    }
+
+    #pkmnContainer article {
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
