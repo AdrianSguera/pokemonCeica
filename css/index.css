@@ -179,7 +179,7 @@ header {
 }
 
 
-@media screen and (max-width: 376px) {
+@media screen and (max-width: 420px) {
     /* Estilos para dispositivos móviles */
     header {
         flex-direction: column;
