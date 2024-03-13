@@ -54,14 +54,13 @@ window.onload = async () => {
 }
 
 async function getDataUrl(url) {
-    document.getElementById("loading").style.display = "none";
     try {
-        // Verificar si los datos ya están en caché
-        //if (pokemonCache[url]) {
-        //    handlePaginationButtons(pokemonCache[url]);
-        //    mostrarDatosIniciales(pokemonCache[url].results);
-        //    return; // No es necesario hacer una solicitud de red
-        //}
+        //Verificar si los datos ya están en caché
+        if (pokemon[url]) {
+            handlePaginationButtons(pokemonCache[url]);
+            mostrarDatosIniciales(pokemonCache[url].results);
+            return; // No es necesario hacer una solicitud de red
+        }
 
         const response = await fetch(url);
         if (!response.ok) {
@@ -75,6 +74,7 @@ async function getDataUrl(url) {
         // Almacenar los datos recuperados en la caché local
         pokemonCache[url] = data;
         currentUrl = url; // Actualizar la URL actual
+        document.getElementById("loading").style.display = "none";
     } catch (error) {
         console.error('There was a problem with your fetch operation:', error);
     }
