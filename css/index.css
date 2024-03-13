@@ -186,6 +186,11 @@ header {
         align-items: center;
     }
 
+    #keepWalking{
+        width: 50;
+        height: 25;
+    }
+
     .estilo-menu {
         display: none;
     }
