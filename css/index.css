@@ -195,6 +195,10 @@ header {
         display: none;
     }
 
+    .estilo-menu li {
+        display: block;
+    }
+
     #barras-menu {
         display: block;
     }
