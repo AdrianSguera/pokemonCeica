@@ -80,25 +80,21 @@ async function fetchAndSavePokemonData() {
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        const pokemonUrls = data.results.map(pokemon => pokemon.url);
 
-        const pokemonList = [];
-        for (const pokemon of data.results) {
-            const pokemonResponse = await fetch(pokemon.url);
-            if (!pokemonResponse.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const pokemonData = await pokemonResponse.json();
+        // Realizar solicitudes en paralelo para obtener los datos de todos los Pokémon
+        const responses = await Promise.all(pokemonUrls.map(url => fetch(url)));
+        const pokemonDataList = await Promise.all(responses.map(response => response.json()));
 
-            const pokemonObject = {
-                name: pokemonData.name,
-                front_default: pokemonData.sprites.front_default,
-                back_default: pokemonData.sprites.back_default,
-                types: pokemonData.types.map(typeObj => typeObj.type.name).join(", "),
-                id: pokemonData.id,
-                exp: pokemonData.base_experience
-            };
-            pokemonList.push(pokemonObject);
-        }
+        // Procesar los datos de los Pokémon
+        const pokemonList = pokemonDataList.map(pokemonData => ({
+            name: pokemonData.name,
+            front_default: pokemonData.sprites.front_default,
+            back_default: pokemonData.sprites.back_default,
+            types: pokemonData.types.map(typeObj => typeObj.type.name).join(", "),
+            id: pokemonData.id,
+            exp: pokemonData.base_experience
+        }));
 
         pokemonData = pokemonList;
         calcularPaginacion();
