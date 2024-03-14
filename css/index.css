@@ -178,7 +178,6 @@ header {
     margin-top: 10px; /* Agrega un pequeño espacio entre el título y el contenido */
 }
 
-
 @media screen and (max-width: 420px) {
     /* Estilos para dispositivos móviles */
     header {
